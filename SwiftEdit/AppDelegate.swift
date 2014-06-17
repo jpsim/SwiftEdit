@@ -12,11 +12,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                             
     @IBOutlet var window: NSWindow
     @IBOutlet var scrollView: NSScrollView
-    var textView : NSTextView {
-        get {
-            return scrollView.contentView.documentView as NSTextView
-        }
-    }
+    var textView : NSTextView { return scrollView.contentView.documentView as NSTextView }
     var rulerView : RulerView?
 
     func applicationDidFinishLaunching(aNotification: NSNotification?) {

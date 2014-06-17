@@ -13,6 +13,7 @@
 		92203381194C08B100AC6E61 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9220337F194C08B100AC6E61 /* MainMenu.xib */; };
 		9220338D194C08B100AC6E61 /* SwiftEditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220338C194C08B100AC6E61 /* SwiftEditTests.swift */; };
 		92203397194C095D00AC6E61 /* RulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92203396194C095D00AC6E61 /* RulerView.swift */; };
+		9220339919501CCC00AC6E61 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220339819501CCC00AC6E61 /* TextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		9220338B194C08B100AC6E61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9220338C194C08B100AC6E61 /* SwiftEditTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftEditTests.swift; sourceTree = "<group>"; };
 		92203396194C095D00AC6E61 /* RulerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulerView.swift; sourceTree = "<group>"; };
+		9220339819501CCC00AC6E61 /* TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				9220337B194C08B100AC6E61 /* AppDelegate.swift */,
+				9220339819501CCC00AC6E61 /* TextView.swift */,
 				92203396194C095D00AC6E61 /* RulerView.swift */,
 				9220337D194C08B100AC6E61 /* Images.xcassets */,
 				9220337F194C08B100AC6E61 /* MainMenu.xib */,
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9220337C194C08B100AC6E61 /* AppDelegate.swift in Sources */,
+				9220339919501CCC00AC6E61 /* TextView.swift in Sources */,
 				92203397194C095D00AC6E61 /* RulerView.swift in Sources */,
 				9220337A194C08B100AC6E61 /* main.swift in Sources */,
 			);
@@ -340,6 +344,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = SwiftEdit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
