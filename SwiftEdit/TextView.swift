@@ -46,7 +46,7 @@ class TextView: NSTextView {
     }
     
     override func drawViewBackgroundInRect(rect: NSRect) {
-        super.drawViewBackgroundInRect(rect)
+        //super.drawViewBackgroundInRect(rect)
         drawPageGuideBackgroundAt(guidePosition)
         drawHighlightedLine()
         drawPageGuideLineAt(guidePosition)
