@@ -12,8 +12,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                             
     @IBOutlet var window: NSWindow
     @IBOutlet var scrollView: NSScrollView
-    var textView : NSTextView { return scrollView.contentView.documentView as NSTextView }
-    var rulerView : RulerView?
+    var textView: NSTextView { return scrollView.contentView.documentView as NSTextView }
+    var rulerView: RulerView?
+    var syntaxHighligher: GroovySyntaxHighligher?
 
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         let textView = self.textView
@@ -26,6 +27,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         scrollView.hasHorizontalRuler = false
         scrollView.hasVerticalRuler = true
         scrollView.rulersVisible = true
+        
+        syntaxHighligher = GroovySyntaxHighligher(textStorage: textView.textStorage, textView: textView, scrollView: scrollView)
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {

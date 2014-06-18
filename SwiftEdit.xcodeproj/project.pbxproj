@@ -18,6 +18,8 @@
 		9220339E195049A700AC6E61 /* LinenBackgroundPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 9220339C195049A700AC6E61 /* LinenBackgroundPattern.png */; };
 		9220339F195049A700AC6E61 /* LinenBackgroundPattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9220339D195049A700AC6E61 /* LinenBackgroundPattern@2x.png */; };
 		922033A1195049D100AC6E61 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033A0195049D100AC6E61 /* ScrollView.swift */; };
+		922033A3195173D700AC6E61 /* GroovySyntaxHighligher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033A2195173D700AC6E61 /* GroovySyntaxHighligher.swift */; };
+		922033A81951969B00AC6E61 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033A71951969B00AC6E61 /* GCD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		9220339C195049A700AC6E61 /* LinenBackgroundPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LinenBackgroundPattern.png; sourceTree = "<group>"; };
 		9220339D195049A700AC6E61 /* LinenBackgroundPattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LinenBackgroundPattern@2x.png"; sourceTree = "<group>"; };
 		922033A0195049D100AC6E61 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
+		922033A2195173D700AC6E61 /* GroovySyntaxHighligher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroovySyntaxHighligher.swift; sourceTree = "<group>"; };
+		922033A71951969B00AC6E61 /* GCD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,11 +91,13 @@
 		92203376194C08B100AC6E61 /* SwiftEdit */ = {
 			isa = PBXGroup;
 			children = (
+				922033A71951969B00AC6E61 /* GCD.swift */,
 				9220337B194C08B100AC6E61 /* AppDelegate.swift */,
 				922033A0195049D100AC6E61 /* ScrollView.swift */,
 				9220339A1950496200AC6E61 /* ClipView.swift */,
 				9220339819501CCC00AC6E61 /* TextView.swift */,
 				92203396194C095D00AC6E61 /* RulerView.swift */,
+				922033A2195173D700AC6E61 /* GroovySyntaxHighligher.swift */,
 				9220337D194C08B100AC6E61 /* Images.xcassets */,
 				9220337F194C08B100AC6E61 /* MainMenu.xib */,
 				92203377194C08B100AC6E61 /* Supporting Files */,
@@ -230,10 +236,12 @@
 			files = (
 				9220337C194C08B100AC6E61 /* AppDelegate.swift in Sources */,
 				9220339B1950496200AC6E61 /* ClipView.swift in Sources */,
+				922033A81951969B00AC6E61 /* GCD.swift in Sources */,
 				9220339919501CCC00AC6E61 /* TextView.swift in Sources */,
 				92203397194C095D00AC6E61 /* RulerView.swift in Sources */,
 				9220337A194C08B100AC6E61 /* main.swift in Sources */,
 				922033A1195049D100AC6E61 /* ScrollView.swift in Sources */,
+				922033A3195173D700AC6E61 /* GroovySyntaxHighligher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

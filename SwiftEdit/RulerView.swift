@@ -129,11 +129,9 @@ class RulerView: NSRulerView {
             let newThickness = calculateRuleThickness()
             
             if fabs(ruleThickness - newThickness) > 1 {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.updateThinkness(CGFloat(ceil(Double(newThickness))))
-                    })
-                })
+                GCD.asyncExec {
+                    self.updateThinkness(CGFloat(ceil(Double(newThickness))))
+                }
             }
         }
     }
