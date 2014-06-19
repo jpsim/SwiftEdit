@@ -13,11 +13,11 @@ class GCD {
         timerExec(0, closure)
     }
     
-    class func timerExec(after: Int,_ closure: () -> ()) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, CUnsignedLong(after)), {
-            dispatch_async(dispatch_get_main_queue(), {
-                closure()
-            })
-        })
+    class func timerExec(after: Double,_ closure: () -> ()) {
+        let delay = after * Double(NSEC_PER_MSEC)
+        let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            closure()
+        }
     }
 }
