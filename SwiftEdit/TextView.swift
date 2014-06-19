@@ -9,6 +9,7 @@
 import Cocoa
 
 class TextView: NSTextView {
+    let myDelegate = TextViewDelegate()
     var guidePosition : CGFloat = 0
     var currentColumn : Int = 0
     var fixedFont = NSFont.userFixedPitchFontOfSize(NSFont.smallSystemFontSize())
@@ -109,5 +110,10 @@ class TextView: NSTextView {
         return Double(Int(margin + size * 80)) + 0.5
     }
     
+    override func doCommandBySelector(aSelector: Selector) {
+        if !myDelegate.textView(self, doCommandBySelector: aSelector) {
+            super.doCommandBySelector(aSelector)
+        }
+    }
     
 }

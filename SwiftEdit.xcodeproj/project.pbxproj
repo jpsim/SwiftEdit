@@ -20,6 +20,7 @@
 		922033A1195049D100AC6E61 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033A0195049D100AC6E61 /* ScrollView.swift */; };
 		922033A3195173D700AC6E61 /* GroovySyntaxHighligher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033A2195173D700AC6E61 /* GroovySyntaxHighligher.swift */; };
 		922033A81951969B00AC6E61 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033A71951969B00AC6E61 /* GCD.swift */; };
+		922033AC1952EF0D00AC6E61 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033AB1952EF0D00AC6E61 /* TextViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		922033A0195049D100AC6E61 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		922033A2195173D700AC6E61 /* GroovySyntaxHighligher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroovySyntaxHighligher.swift; sourceTree = "<group>"; };
 		922033A71951969B00AC6E61 /* GCD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
+		922033AB1952EF0D00AC6E61 /* TextViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextViewDelegate.swift; path = ../TextViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				922033A0195049D100AC6E61 /* ScrollView.swift */,
 				9220339A1950496200AC6E61 /* ClipView.swift */,
 				9220339819501CCC00AC6E61 /* TextView.swift */,
+				922033AB1952EF0D00AC6E61 /* TextViewDelegate.swift */,
 				92203396194C095D00AC6E61 /* RulerView.swift */,
 				922033A2195173D700AC6E61 /* GroovySyntaxHighligher.swift */,
 				9220337D194C08B100AC6E61 /* Images.xcassets */,
@@ -237,6 +240,7 @@
 				9220337C194C08B100AC6E61 /* AppDelegate.swift in Sources */,
 				9220339B1950496200AC6E61 /* ClipView.swift in Sources */,
 				922033A81951969B00AC6E61 /* GCD.swift in Sources */,
+				922033AC1952EF0D00AC6E61 /* TextViewDelegate.swift in Sources */,
 				9220339919501CCC00AC6E61 /* TextView.swift in Sources */,
 				92203397194C095D00AC6E61 /* RulerView.swift in Sources */,
 				9220337A194C08B100AC6E61 /* main.swift in Sources */,

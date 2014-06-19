@@ -29,6 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         scrollView.rulersVisible = true
         
         syntaxHighligher = GroovySyntaxHighligher(textStorage: textView.textStorage, textView: textView, scrollView: scrollView)
+
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {
