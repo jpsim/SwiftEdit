@@ -18,7 +18,7 @@
 		9220339E195049A700AC6E61 /* LinenBackgroundPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 9220339C195049A700AC6E61 /* LinenBackgroundPattern.png */; };
 		9220339F195049A700AC6E61 /* LinenBackgroundPattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9220339D195049A700AC6E61 /* LinenBackgroundPattern@2x.png */; };
 		922033A1195049D100AC6E61 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033A0195049D100AC6E61 /* ScrollView.swift */; };
-		922033A3195173D700AC6E61 /* GroovySyntaxHighligher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033A2195173D700AC6E61 /* GroovySyntaxHighligher.swift */; };
+		922033A3195173D700AC6E61 /* SwiftSyntaxHighligher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033A2195173D700AC6E61 /* SwiftSyntaxHighligher.swift */; };
 		922033A81951969B00AC6E61 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033A71951969B00AC6E61 /* GCD.swift */; };
 		922033AC1952EF0D00AC6E61 /* TextViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033AB1952EF0D00AC6E61 /* TextViewDelegate.swift */; };
 /* End PBXBuildFile section */
@@ -49,9 +49,9 @@
 		9220339C195049A700AC6E61 /* LinenBackgroundPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LinenBackgroundPattern.png; sourceTree = "<group>"; };
 		9220339D195049A700AC6E61 /* LinenBackgroundPattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LinenBackgroundPattern@2x.png"; sourceTree = "<group>"; };
 		922033A0195049D100AC6E61 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
-		922033A2195173D700AC6E61 /* GroovySyntaxHighligher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroovySyntaxHighligher.swift; sourceTree = "<group>"; };
+		922033A2195173D700AC6E61 /* SwiftSyntaxHighligher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSyntaxHighligher.swift; sourceTree = "<group>"; };
 		922033A71951969B00AC6E61 /* GCD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
-		922033AB1952EF0D00AC6E61 /* TextViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextViewDelegate.swift; path = ../TextViewDelegate.swift; sourceTree = "<group>"; };
+		922033AB1952EF0D00AC6E61 /* TextViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +100,7 @@
 				9220339819501CCC00AC6E61 /* TextView.swift */,
 				922033AB1952EF0D00AC6E61 /* TextViewDelegate.swift */,
 				92203396194C095D00AC6E61 /* RulerView.swift */,
-				922033A2195173D700AC6E61 /* GroovySyntaxHighligher.swift */,
+				922033A2195173D700AC6E61 /* SwiftSyntaxHighligher.swift */,
 				9220337D194C08B100AC6E61 /* Images.xcassets */,
 				9220337F194C08B100AC6E61 /* MainMenu.xib */,
 				92203377194C08B100AC6E61 /* Supporting Files */,
@@ -245,7 +245,7 @@
 				92203397194C095D00AC6E61 /* RulerView.swift in Sources */,
 				9220337A194C08B100AC6E61 /* main.swift in Sources */,
 				922033A1195049D100AC6E61 /* ScrollView.swift in Sources */,
-				922033A3195173D700AC6E61 /* GroovySyntaxHighligher.swift in Sources */,
+				922033A3195173D700AC6E61 /* SwiftSyntaxHighligher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +436,7 @@
 				92203392194C08B100AC6E61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		92203393194C08B100AC6E61 /* Build configuration list for PBXNativeTarget "SwiftEditTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +445,7 @@
 				92203395194C08B100AC6E61 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

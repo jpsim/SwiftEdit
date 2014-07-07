@@ -9,7 +9,4 @@
 import Cocoa
 
 class ClipView: NSClipView {
-    override func drawRect(dirtyRect: NSRect) {
-        //super.drawRect(dirtyRect)
-    }
 }

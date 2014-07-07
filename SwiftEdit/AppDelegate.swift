@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet var scrollView: NSScrollView
     var textView: NSTextView { return scrollView.contentView.documentView as NSTextView }
     var rulerView: RulerView?
-    var syntaxHighligher: GroovySyntaxHighligher?
+    var syntaxHighligher: SwiftSyntaxHighligher?
 
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         let textView = self.textView
@@ -28,12 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         scrollView.hasVerticalRuler = true
         scrollView.rulersVisible = true
         
-        syntaxHighligher = GroovySyntaxHighligher(textStorage: textView.textStorage, textView: textView, scrollView: scrollView)
+        syntaxHighligher = SwiftSyntaxHighligher(textStorage: textView.textStorage, textView: textView, scrollView: scrollView)
 
-    }
-
-    func applicationWillTerminate(aNotification: NSNotification?) {
-        
     }
 }
-

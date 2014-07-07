@@ -10,7 +10,7 @@ import Cocoa
 
 class ScrollView: NSScrollView {
     override func drawRect(dirtyRect: NSRect) {
-        //super.drawRect(dirtyRect)
+
         let linen = NSImage(named: "LinenBackgroundPattern")
         NSColor(patternImage: linen).set()
         NSRectFill(bounds)
