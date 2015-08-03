@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9220337A194C08B100AC6E61 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92203379194C08B100AC6E61 /* main.swift */; };
 		9220337C194C08B100AC6E61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9220337B194C08B100AC6E61 /* AppDelegate.swift */; };
 		9220337E194C08B100AC6E61 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9220337D194C08B100AC6E61 /* Images.xcassets */; };
 		92203381194C08B100AC6E61 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9220337F194C08B100AC6E61 /* MainMenu.xib */; };
@@ -36,7 +35,6 @@
 /* Begin PBXFileReference section */
 		92203374194C08B100AC6E61 /* SwiftEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92203378194C08B100AC6E61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		92203379194C08B100AC6E61 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		9220337B194C08B100AC6E61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9220337D194C08B100AC6E61 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		92203380194C08B100AC6E61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -114,7 +112,6 @@
 				9220339C195049A700AC6E61 /* LinenBackgroundPattern.png */,
 				9220339D195049A700AC6E61 /* LinenBackgroundPattern@2x.png */,
 				92203378194C08B100AC6E61 /* Info.plist */,
-				92203379194C08B100AC6E61 /* main.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -180,7 +177,9 @@
 		9220336C194C08B000AC6E61 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Scott Horn";
 				TargetAttributes = {
 					92203373194C08B100AC6E61 = {
@@ -243,7 +242,6 @@
 				922033AC1952EF0D00AC6E61 /* TextViewDelegate.swift in Sources */,
 				9220339919501CCC00AC6E61 /* TextView.swift in Sources */,
 				92203397194C095D00AC6E61 /* RulerView.swift in Sources */,
-				9220337A194C08B100AC6E61 /* main.swift in Sources */,
 				922033A1195049D100AC6E61 /* ScrollView.swift in Sources */,
 				922033A3195173D700AC6E61 /* SwiftSyntaxHighligher.swift in Sources */,
 			);
@@ -299,6 +297,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -363,6 +362,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SwiftEdit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hornmicro.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -375,6 +375,7 @@
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = SwiftEdit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hornmicro.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -395,6 +396,7 @@
 				INFOPLIST_FILE = SwiftEditTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hornmicro.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};
@@ -412,6 +414,7 @@
 				INFOPLIST_FILE = SwiftEditTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hornmicro.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 			};

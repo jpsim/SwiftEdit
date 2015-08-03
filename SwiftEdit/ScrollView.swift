@@ -12,9 +12,9 @@ class ScrollView: NSScrollView {
     override func drawRect(dirtyRect: NSRect) {
 
         let linen = NSImage(named: "LinenBackgroundPattern")
-        NSColor(patternImage: linen).set()
+        NSColor(patternImage: linen!).set()
         NSRectFill(bounds)
-        let docView = documentView as NSView
+        let docView = documentView as! NSView
         let docRect = convertRect(docView.bounds, fromView: docView)
         
         let shadow = NSShadow()

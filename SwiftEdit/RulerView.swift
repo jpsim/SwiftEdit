@@ -8,12 +8,12 @@
 
 import Cocoa
 
-let DEFAULT_THICKNESS = 25.0
-let RULER_MARGIN = 11.0
+let DEFAULT_THICKNESS: CGFloat = 25.0
+let RULER_MARGIN: CGFloat = 11.0
 
 class RulerView: NSRulerView {
-    var _lineIndices : Int[]?
-    var lineIndices : Int[]? {
+    var _lineIndices : [Int]?
+    var lineIndices : [Int]? {
         get {
             if self._lineIndices == nil {
                 calculateLines()
@@ -26,30 +26,34 @@ class RulerView: NSRulerView {
     }
 
     override var opaque: Bool { return false }
-    override var clientView: NSView! {
+    override var clientView: NSView? {
         willSet {
             let oldView = self.clientView
             let center = NSNotificationCenter.defaultCenter()
-            if oldView is NSTextView {
+            if let oldView = oldView as? NSTextView {
                 if oldView != newValue {
-                    center.removeObserver(self, name: NSTextDidEndEditingNotification, object: (oldView as NSTextView).textStorage)
-                    center.removeObserver(self, name: NSViewBoundsDidChangeNotification, object: scrollView.contentView)
+                    center.removeObserver(self, name: NSTextDidEndEditingNotification, object: oldView.textStorage)
+                    center.removeObserver(self, name: NSViewBoundsDidChangeNotification, object: scrollView?.contentView)
                 }
             }
             if newValue is NSTextView {
                 center.addObserver(self, selector: "textDidChange:", name: NSTextDidChangeNotification, object: newValue)
-                scrollView.contentView.postsBoundsChangedNotifications = true
-                center.addObserver(self, selector: "boundsDidChange:", name: NSViewBoundsDidChangeNotification, object: scrollView.contentView)
+                scrollView?.contentView.postsBoundsChangedNotifications = true
+                center.addObserver(self, selector: "boundsDidChange:", name: NSViewBoundsDidChangeNotification, object: scrollView?.contentView)
                 invalidateLineIndices()
             }
         }
     }
     
-    init(scrollView: NSScrollView, orientation: NSRulerOrientation) {
+    override init(scrollView: NSScrollView?, orientation: NSRulerOrientation) {
         super.init(scrollView: scrollView, orientation:orientation)
-        clientView = scrollView.documentView as NSView
+        clientView = scrollView?.documentView as? NSView
         ruleThickness = DEFAULT_THICKNESS
         needsDisplay = true
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     deinit {
@@ -66,7 +70,6 @@ class RulerView: NSRulerView {
     }
     
     override func drawRect(dirtyRect: NSRect) {
-        //super.drawRect(dirtyRect)
         drawHashMarksAndLabelsInRect(dirtyRect)
     }
     
@@ -75,11 +78,11 @@ class RulerView: NSRulerView {
     }
     
     func lineNumberForCharacterIndex(index: Int) -> Int {
-        let lineIndices = self.lineIndices!
-        var left = 0, right = lineIndices.count
+        let lineIndices = self.lineIndices
+        var left = 0, right = lineIndices!.count
         while right - left > 1 {
-            var mid = (left + right) / 2
-            var lineIndex = lineIndices[mid]
+            let mid = (left + right) / 2
+            let lineIndex = lineIndices![mid]
             if index < lineIndex {
                 right = mid
             } else if index > lineIndex {
@@ -92,25 +95,25 @@ class RulerView: NSRulerView {
     }
     
     func calculateRuleThickness() -> CGFloat {
-        let lineIndices = self.lineIndices!
-        let digits : Int = Int(log10(Double(lineIndices.count))) + 1
+        let lineIndices = self.lineIndices
+        let digits = Int(log10(Double(lineIndices!.count))) + 1
         var maxDigits = ""
         for var i = 0; i < digits; i++ {
             maxDigits += "8"
         }
-        let digitWidth = (maxDigits as NSString).sizeWithAttributes(textAttributes()).width * 2 + RULER_MARGIN
+        let digitWidth = (maxDigits as NSString).sizeWithAttributes(textAttributes() as? [String : AnyObject]).width * 2 + RULER_MARGIN
         let defaultThickness = CGFloat(DEFAULT_THICKNESS)
         return digitWidth > defaultThickness  ? digitWidth : defaultThickness
     }
     
     func calculateLines() {
-        var lineIndices : Int[] = []
+        var lineIndices : [Int] = []
         if let textView = self.textView {
-            let text: NSString = textView.string
-            let textLength: Int = text.length
-            var totalLines: Int = 0
-            var charIndex: Int = 0
-            do {
+            let text = textView.string! as NSString
+            let textLength = text.length
+            var totalLines = 0
+            var charIndex = 0
+            repeat {
                 lineIndices.append(charIndex)
                 charIndex = NSMaxRange(text.lineRangeForRange(NSMakeRange(charIndex, 0)))
                 totalLines++
@@ -145,7 +148,7 @@ class RulerView: NSRulerView {
         if let textView = self.textView {
             
             // Make background
-            let docRect = convertRect(clientView.bounds, fromView: clientView)
+            let docRect = convertRect(clientView!.bounds, fromView: clientView)
             let y = docRect.origin.y
             let height = docRect.size.height
             let width = bounds.size.width
@@ -175,34 +178,34 @@ class RulerView: NSRulerView {
             let nullRange = NSMakeRange(NSNotFound, 0)
             var lineRectCount: Int = 0
             
-            let textVisibleRect = scrollView.contentView.bounds
+            let textVisibleRect = scrollView!.contentView.bounds
             let rulerBounds = bounds
             let textInset = textView.textContainerInset.height
             
-            let glyphRange = layoutManager.glyphRangeForBoundingRect(textVisibleRect, inTextContainer: container)
-            let charRange = layoutManager.characterRangeForGlyphRange(glyphRange, actualGlyphRange: nil)
+            let glyphRange = layoutManager!.glyphRangeForBoundingRect(textVisibleRect, inTextContainer: container!)
+            let charRange = layoutManager!.characterRangeForGlyphRange(glyphRange, actualGlyphRange: nil)
             
-            let lineIndices = self.lineIndices!
+            let lineIndices = self.lineIndices
             let startChange = lineNumberForCharacterIndex(charRange.location)
             let endChange = lineNumberForCharacterIndex(NSMaxRange(charRange))
             for var lineNumber = startChange; lineNumber <= endChange; lineNumber++ {
-                let charIndex = lineIndices[lineNumber - 1]
-                let lineRectsForRange = layoutManager.rectArrayForCharacterRange(
+                let charIndex = lineIndices![lineNumber - 1]
+                let lineRectsForRange = layoutManager!.rectArrayForCharacterRange(
                     NSMakeRange(charIndex, 0),
                     withinSelectedCharacterRange: nullRange,
-                    inTextContainer: container,
+                    inTextContainer: container!,
                     rectCount: &lineRectCount)
                 if lineRectCount > 0 {
                     let ypos = textInset + NSMinY(lineRectsForRange[0]) - NSMinY(textVisibleRect)
                     let labelText = NSString(format: "%ld", lineNumber)
-                    let labelSize = labelText.sizeWithAttributes(textAttributes())
+                    let labelSize = labelText.sizeWithAttributes(textAttributes() as? [String : AnyObject])
                     
                     let lineNumberRect = NSMakeRect( NSWidth(rulerBounds) - labelSize.width - RULER_MARGIN,
                                                      ypos + (NSHeight(lineRectsForRange[0]) - labelSize.height) / 2.0,
                                                      NSWidth(rulerBounds) - RULER_MARGIN * 2.0,
                                                      NSHeight(lineRectsForRange[0]) )
                     
-                    labelText.drawInRect(lineNumberRect, withAttributes: textAttributes())
+                    labelText.drawInRect(lineNumberRect, withAttributes: textAttributes() as? [String : AnyObject])
                 }
                 
                 // we are past the visible range so exit for

@@ -14,12 +14,12 @@ class TextView: NSTextView {
     var currentColumn : Int = 0
     var fixedFont = NSFont.userFixedPitchFontOfSize(NSFont.smallSystemFontSize())
 
-    init(coder: NSCoder!) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         setup()
     }
     
-    init(frame frameRect: NSRect, textContainer container: NSTextContainer!) {
+    override init(frame frameRect: NSRect, textContainer container: NSTextContainer!) {
         super.init(frame: frameRect, textContainer: container)
         setup()
     }
@@ -54,7 +54,7 @@ class TextView: NSTextView {
     }
     
     func drawHighlightedLine() {
-        let text = textStorage.string as NSString
+        let text = textStorage!.string as NSString
         if selectedRange.location <= text.length {
             let lineRange = text.lineRangeForRange(NSMakeRange(selectedRange.location, 0))
             NSColor(calibratedRed: 0.992, green: 1.000, blue: 0.800, alpha: 1).setFill()
@@ -79,9 +79,9 @@ class TextView: NSTextView {
     
     func rectForRange(range: NSRange) -> NSRect {
         var lineRectCount : Int = 0
-        let lineRectsForRange = layoutManager.rectArrayForCharacterRange(range,
+        let lineRectsForRange = layoutManager!.rectArrayForCharacterRange(range,
             withinSelectedCharacterRange: NSMakeRange(NSNotFound, 0),
-            inTextContainer: textContainer,
+            inTextContainer: textContainer!,
             rectCount: &lineRectCount)
         
         if lineRectCount < 1 {
@@ -96,18 +96,18 @@ class TextView: NSTextView {
     func initGuidePosition() -> CGFloat {
         var lineRectCount: Int = 0
         var stripSpace = false
-        if string.utf16count < 1 {
+        if string!.utf16.count < 1 {
             string = " "
             stripSpace = true
         }
-        let lineRectsForRange = layoutManager.rectArrayForCharacterRange(NSMakeRange(0, 1),
+        let lineRectsForRange = layoutManager!.rectArrayForCharacterRange(NSMakeRange(0, 1),
             withinSelectedCharacterRange: NSMakeRange(NSNotFound, 0),
-            inTextContainer: textContainer,
+            inTextContainer: textContainer!,
             rectCount: &lineRectCount)
         string = stripSpace ? "" : string
         let margin = lineRectsForRange[0].origin.x
-        let size = ("8" as NSString).sizeWithAttributes([NSFontAttributeName: fixedFont]).width
-        return Double(Int(margin + size * 80)) + 0.5
+        let size = ("8" as NSString).sizeWithAttributes([NSFontAttributeName: fixedFont!]).width
+        return CGFloat(Int(margin + size * 80)) + 0.5
     }
     
     override func doCommandBySelector(aSelector: Selector) {
