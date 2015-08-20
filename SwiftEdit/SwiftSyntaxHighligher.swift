@@ -78,8 +78,8 @@ public enum SyntaxKind: String {
 }
 
 class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDelegate {
-    var textStorage : NSTextStorage?
-    var textView : NSTextView?
+    var textStorage: NSTextStorage?
+    var textView: NSTextView?
     var scrollView: NSScrollView?
 
     convenience init(textStorage: NSTextStorage, textView: NSTextView, scrollView: NSScrollView) {
@@ -87,20 +87,15 @@ class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDel
         self.textStorage = textStorage
         self.scrollView = scrollView
         self.textView = textView
-        
+
         textStorage.delegate = self
-//        scrollView.contentView.postsBoundsChangedNotifications = true
-//        NSNotificationCenter.defaultCenter().addObserver(self,
-//            selector: "textStorageDidProcessEditing:",
-//            name: NSViewBoundsDidChangeNotification,
-//            object: scrollView.contentView)
-        parse(nil)
+        parse()
     }
-    
+
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-    
+
     func visibleRange() -> NSRange {
         let container = textView!.textContainer
         let layoutManager = textView!.layoutManager
@@ -110,11 +105,9 @@ class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDel
         return layoutManager!.characterRangeForGlyphRange(glyphRange,
             actualGlyphRange: nil)
     }
-    
-    func parse(sender: AnyObject?) {
-        let tokens = parseString(textStorage!.string)
 
-        if tokens == nil {
+    func parse() {
+        guard let tokens = parseString(textStorage!.string) else {
             return
         }
 
@@ -125,7 +118,7 @@ class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDel
             layoutManager.removeTemporaryAttribute(SWIFT_ELEMENT_TYPE_KEY,
                 forCharacterRange: range)
 
-            for token in tokens! {
+            for token in tokens {
                 layoutManager.addTemporaryAttributes([SWIFT_ELEMENT_TYPE_KEY: token.kind],
                     forCharacterRange: token.range)
             }
@@ -133,18 +126,12 @@ class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDel
     }
 
     func parseString(string: String) -> [Token]? {
-        // Save string to temporary file
-        let tmpFilePath = NSTemporaryDirectory().stringByAppendingPathComponent("tmp.swift")
-        NSFileManager.defaultManager().createFileAtPath(tmpFilePath,
-            contents: string.dataUsingEncoding(NSUTF8StringEncoding),
-            attributes: nil)
-
-        // Shell out to SourceKit to obtain syntax map for string
+        // Shell out to SourceKitten to obtain syntax map for string
         let syntaxPipe = NSPipe()
 
         let syntaxTask = NSTask()
         syntaxTask.launchPath = "/usr/local/bin/sourcekitten"
-        syntaxTask.arguments = ["syntax", "--file", tmpFilePath]
+        syntaxTask.arguments = ["syntax", "--text", string]
         syntaxTask.standardOutput = syntaxPipe
 
         syntaxTask.launch()
@@ -164,19 +151,17 @@ class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDel
     }
 
     override func textStorageDidProcessEditing(aNotification: NSNotification) {
-        GCD.asyncExec {
-            self.parse(self)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.parse()
         }
     }
 
     func layoutManager(layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [String : AnyObject], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer) -> [String : AnyObject]? {
-        if toScreen {
-            if let type = attrs[SWIFT_ELEMENT_TYPE_KEY] as? String {
-                if let style = SyntaxKind(rawValue: type)?.colorValue {
-                    return [NSForegroundColorAttributeName: style]
-                } else {
-                    print("\(type) is not a valid style")
-                }
+        if let type = attrs[SWIFT_ELEMENT_TYPE_KEY] as? String where toScreen {
+            if let style = SyntaxKind(rawValue: type)?.colorValue {
+                return [NSForegroundColorAttributeName: style]
+            } else {
+                print("\(type) is not a valid style")
             }
         }
         return attrs

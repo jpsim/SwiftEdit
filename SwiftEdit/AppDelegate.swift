@@ -10,7 +10,7 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-                            
+
     @IBOutlet var window: NSWindow?
     @IBOutlet var scrollView: NSScrollView?
     var textView: NSTextView { return scrollView!.contentView.documentView as! NSTextView }
@@ -22,13 +22,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         textView.textContainerInset = NSMakeSize(0,1)
         textView.font = NSFont.userFixedPitchFontOfSize(NSFont.smallSystemFontSize())
         textView.automaticQuoteSubstitutionEnabled = false
-        
-        rulerView = RulerView(scrollView: scrollView, orientation: NSRulerOrientation.VerticalRuler)
+
+        rulerView = RulerView(scrollView: scrollView, orientation: .VerticalRuler)
         scrollView?.verticalRulerView = rulerView
         scrollView?.hasHorizontalRuler = false
         scrollView?.hasVerticalRuler = true
         scrollView?.rulersVisible = true
-        
+
         syntaxHighligher = SwiftSyntaxHighligher(textStorage: textView.textStorage!, textView: textView, scrollView: scrollView!)
     }
 }
