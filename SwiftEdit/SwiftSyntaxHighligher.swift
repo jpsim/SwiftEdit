@@ -127,6 +127,10 @@ class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDel
 
     func parseString(string: String) -> [Token]? {
         // Shell out to SourceKitten to obtain syntax map for string
+        if(string.isEmpty){
+            return []
+        }
+        
         let syntaxPipe = NSPipe()
 
         let syntaxTask = NSTask()
