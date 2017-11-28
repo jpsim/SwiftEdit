@@ -8,7 +8,9 @@
 
 import Cocoa
 
-let SWIFT_ELEMENT_TYPE_KEY = "swiftElementType"
+extension NSAttributedStringKey {
+    static let swiftElementType = NSAttributedStringKey(rawValue: "swiftElementType")
+}
 
 struct Token {
     let kind: String
@@ -60,7 +62,7 @@ public enum SyntaxKind: String {
         case .Keyword:
             return NSColor(red: 0.796, green: 0.208, blue: 0.624, alpha: 1)
         case .Identifier:
-            return NSColor.blackColor()
+            return NSColor.black
         case .Typeidentifier:
             return NSColor(red: 0.478, green: 0.251, blue: 0.651, alpha: 1)
         case .String:
@@ -72,7 +74,7 @@ public enum SyntaxKind: String {
         case .AttributeBuiltin:
             return NSColor(red: 0.796, green: 0.208, blue: 0.624, alpha: 1)
         default:
-            return NSColor.greenColor()
+            return NSColor.green
         }
     }
 }
@@ -93,21 +95,21 @@ class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDel
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     func visibleRange() -> NSRange {
         let container = textView!.textContainer
         let layoutManager = textView!.layoutManager
         let textVisibleRect = scrollView!.contentView.bounds
-        let glyphRange = layoutManager!.glyphRangeForBoundingRect(textVisibleRect,
-            inTextContainer: container!)
-        return layoutManager!.characterRangeForGlyphRange(glyphRange,
+        let glyphRange = layoutManager!.glyphRange(forBoundingRect: textVisibleRect,
+                                                   in: container!)
+        return layoutManager!.characterRange(forGlyphRange: glyphRange,
             actualGlyphRange: nil)
     }
 
     func parse() {
-        guard let tokens = parseString(textStorage!.string) else {
+        guard let tokens = parseString(string: textStorage!.string) else {
             return
         }
 
@@ -115,11 +117,11 @@ class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDel
         let layoutManagerList = textStorage!.layoutManagers as [NSLayoutManager]
         for layoutManager in layoutManagerList {
             layoutManager.delegate = self
-            layoutManager.removeTemporaryAttribute(SWIFT_ELEMENT_TYPE_KEY,
+            layoutManager.removeTemporaryAttribute(.swiftElementType,
                 forCharacterRange: range)
 
             for token in tokens {
-                layoutManager.addTemporaryAttributes([SWIFT_ELEMENT_TYPE_KEY: token.kind],
+                layoutManager.addTemporaryAttributes([.swiftElementType: token.kind],
                     forCharacterRange: token.range)
             }
         }
@@ -131,9 +133,9 @@ class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDel
             return []
         }
         
-        let syntaxPipe = NSPipe()
+        let syntaxPipe = Pipe()
 
-        let syntaxTask = NSTask()
+        let syntaxTask = Process()
         syntaxTask.launchPath = "/usr/local/bin/sourcekitten"
         syntaxTask.arguments = ["syntax", "--text", string]
         syntaxTask.standardOutput = syntaxPipe
@@ -141,10 +143,9 @@ class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDel
         syntaxTask.launch()
         syntaxTask.waitUntilExit()
 
-        let syntaxMap = NSMutableString(data: syntaxPipe.fileHandleForReading.readDataToEndOfFile(),
-            encoding: NSUTF8StringEncoding)
+        let syntaxMap = NSMutableString(data: syntaxPipe.fileHandleForReading.readDataToEndOfFile(), encoding: String.Encoding.utf8.rawValue)
 
-        let tokens = try! NSJSONSerialization.JSONObjectWithData(syntaxMap!.dataUsingEncoding(NSUTF8StringEncoding)!,
+        let tokens = try! JSONSerialization.jsonObject(with: syntaxMap!.data(using: String.Encoding.utf8.rawValue)!,
             options: []) as! [NSDictionary]
         return tokens.map { token in
             let offset = token["offset"] as! Int
@@ -154,16 +155,16 @@ class SwiftSyntaxHighligher: NSObject, NSTextStorageDelegate, NSLayoutManagerDel
         }
     }
 
-    override func textStorageDidProcessEditing(aNotification: NSNotification) {
-        dispatch_async(dispatch_get_main_queue()) {
+    override func textStorageDidProcessEditing(_ notification: Notification) {
+        DispatchQueue.main.async() {
             self.parse()
         }
     }
 
-    func layoutManager(layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [String : AnyObject], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer) -> [String : AnyObject]? {
-        if let type = attrs[SWIFT_ELEMENT_TYPE_KEY] as? String where toScreen {
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedStringKey : Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedStringKey : Any]? {
+        if let type = attrs[.swiftElementType] as? String, toScreen {
             if let style = SyntaxKind(rawValue: type)?.colorValue {
-                return [NSForegroundColorAttributeName: style]
+                return [NSAttributedStringKey.foregroundColor: style]
             } else {
                 print("\(type) is not a valid style")
             }
