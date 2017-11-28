@@ -8,6 +8,7 @@ highlighting using [SourceKitten][sourcekitten].
 ## Requirements
 
 * Xcode 9
+* Git submodules updated: `git submodule update --init --recursive`
 
 ## Credits
 
