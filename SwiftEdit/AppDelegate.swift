@@ -17,13 +17,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var rulerView: RulerView?
     var syntaxHighligher: SwiftSyntaxHighligher?
 
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ notification: Notification) {
         let textView = self.textView
-        textView.textContainerInset = NSMakeSize(0,1)
-        textView.font = NSFont.userFixedPitchFontOfSize(NSFont.smallSystemFontSize())
-        textView.automaticQuoteSubstitutionEnabled = false
+        textView.textContainerInset = NSSize(width: 0, height: 1)
+        textView.font = NSFont.userFixedPitchFont(ofSize: NSFont.smallSystemFontSize)
+        textView.isAutomaticQuoteSubstitutionEnabled = false
 
-        rulerView = RulerView(scrollView: scrollView, orientation: .VerticalRuler)
+        rulerView = RulerView(scrollView: scrollView, orientation: .verticalRuler)
         scrollView?.verticalRulerView = rulerView
         scrollView?.hasHorizontalRuler = false
         scrollView?.hasVerticalRuler = true
