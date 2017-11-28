@@ -16,6 +16,8 @@
 		9220339E195049A700AC6E61 /* LinenBackgroundPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 9220339C195049A700AC6E61 /* LinenBackgroundPattern.png */; };
 		9220339F195049A700AC6E61 /* LinenBackgroundPattern@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9220339D195049A700AC6E61 /* LinenBackgroundPattern@2x.png */; };
 		922033A3195173D700AC6E61 /* SwiftSyntaxHighligher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922033A2195173D700AC6E61 /* SwiftSyntaxHighligher.swift */; };
+		CA3018651FCCFD2E00F0F070 /* SourceKittenFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA3018641FCCFD2E00F0F070 /* SourceKittenFramework.framework */; };
+		CA3018661FCCFD2E00F0F070 /* SourceKittenFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CA3018641FCCFD2E00F0F070 /* SourceKittenFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,20 @@
 			remoteInfo = SwiftEdit;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CA3018671FCCFD2E00F0F070 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CA3018661FCCFD2E00F0F070 /* SourceKittenFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		92203374194C08B100AC6E61 /* SwiftEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +58,7 @@
 		9220339C195049A700AC6E61 /* LinenBackgroundPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LinenBackgroundPattern.png; sourceTree = "<group>"; };
 		9220339D195049A700AC6E61 /* LinenBackgroundPattern@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LinenBackgroundPattern@2x.png"; sourceTree = "<group>"; };
 		922033A2195173D700AC6E61 /* SwiftSyntaxHighligher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSyntaxHighligher.swift; sourceTree = "<group>"; };
+		CA3018641FCCFD2E00F0F070 /* SourceKittenFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SourceKittenFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA3018651FCCFD2E00F0F070 /* SourceKittenFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +86,7 @@
 				92203376194C08B100AC6E61 /* SwiftEdit */,
 				92203389194C08B100AC6E61 /* SwiftEditTests */,
 				92203375194C08B100AC6E61 /* Products */,
+				CA3018641FCCFD2E00F0F070 /* SourceKittenFramework.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,6 +150,7 @@
 				92203370194C08B100AC6E61 /* Sources */,
 				92203371194C08B100AC6E61 /* Frameworks */,
 				92203372194C08B100AC6E61 /* Resources */,
+				CA3018671FCCFD2E00F0F070 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -365,6 +385,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = SwiftEdit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hornmicro.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -379,6 +400,7 @@
 				GCC_OPTIMIZATION_LEVEL = fast;
 				INFOPLIST_FILE = SwiftEdit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hornmicro.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
