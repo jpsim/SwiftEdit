@@ -8,8 +8,7 @@ highlighting using [SourceKitten][sourcekitten].
 ## Requirements
 
 * SourceKitten installed under `/usr/local/bin/sourcekitten`
-* Xcode 7 Beta 5 installed or symlinked under `/Applications/Xcode-7.app` and
-  set as `xcode-select`.
+* Xcode 9
 
 ## Credits
 
