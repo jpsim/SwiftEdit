@@ -7,7 +7,6 @@ highlighting using [SourceKitten][sourcekitten].
 
 ## Requirements
 
-* SourceKitten installed under `/usr/local/bin/sourcekitten`
 * Xcode 9
 
 ## Credits
